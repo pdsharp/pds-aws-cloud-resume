@@ -21,7 +21,7 @@ jobs:
         aws-region: us-west-2
 
     - name: Deploy static site to S3 bucket
-      run: aws s3 sync ./frontend s3://pds-aws-resume.asqu.net --delete
+      run: aws s3 sync ./frontend s3://pds-aws-resume.asqu.net --delete --acl public_read
     
     - name: Invalidate CloudFront
       uses: chetan/invalidate-cloudfront-action@v2
