@@ -2,8 +2,9 @@ name: Frontend CI
 
 on:
   push:
-    branches:
-    - main
+    branches: [ main ]
+    paths:
+    - 'frontend/**'
 
 jobs:
   deploy:
@@ -21,3 +22,12 @@ jobs:
 
     - name: Deploy static site to S3 bucket
       run: aws s3 sync ./frontend s3://pds-aws-resume.asqu.net --delete
+    
+    - name: Invalidate CloudFront
+      uses: chetan/invalidate-cloudfront-action@v2
+      env:
+        DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+        PATHS: '/index.html, /js/*, /css/*, /assets/*'
+        AWS_REGION: 'us-east-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
