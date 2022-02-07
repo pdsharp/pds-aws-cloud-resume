@@ -19,4 +19,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
       - run: sam build --use-container -t backend/template.yaml
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name counter --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-o7kw4beqpta9
+      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
