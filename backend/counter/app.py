@@ -2,7 +2,7 @@ import boto3
 import botocore.exceptions
 
 client = boto3.resource("dynamodb")
-table = client.Table("visitCounter")
+table = client.Table("counter")
 
 def lambda_handler(event, context):
     try:
@@ -29,6 +29,6 @@ def lambda_handler(event, context):
 	'headers': {
 		'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'application/json',
-                'Access-Control-Allow-Methods': 'OPTIONS,POST',
+                'Access-Control-Allow-Methods': 'OPTIONS,GET',
 	}
     }
