@@ -1,4 +1,4 @@
-const functionApi = 'https://t03oo3i6y4.execute-api.us-west-2.amazonaws.com/Prod/count'
+const functionApi = 'https://7jsyoco0gb.execute-api.us-west-2.amazonaws.com/Prod/count'
 
 const getVisitCount = () => {
     let count = 30;
