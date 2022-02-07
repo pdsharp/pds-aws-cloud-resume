@@ -17,7 +17,7 @@ def lambda_handler(event, context):
         if e.response['Error']['Code'] != 'ConditionalCheckFailedException':
             raise
     counter = table.get_item(Key={'id': 1})
-    newcounter = counter['Item']['visitCount'] + 2
+    newcounter = counter['Item']['visitCount'] + 3
     table.update_item(
         Key={'id': 1},
         UpdateExpression='SET visitCount = :value1',
