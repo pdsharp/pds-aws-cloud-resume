@@ -6,7 +6,7 @@ Parameters:
   ApplicationName:
     Description: "Name of application"
     Type: String
-    Default: "visitCounter"
+    Default: "counter"
 
 Resources:
   MyAPI:
@@ -19,8 +19,7 @@ Resources:
             AllowMethods: "'GET, OPTIONS'"
             AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
             AllowOrigin: "'*'"
-  
-  
+    
   LambdaFunction:
     Type: AWS::Serverless::Function 
     Properties:
