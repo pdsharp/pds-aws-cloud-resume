@@ -7,10 +7,7 @@ table = client.Table("counter")
 def lambda_handler(event, context):
     try:
         table.put_item(
-            Item = {
-                'id': 1,
-                'visitCount': 1,
-            },
+            Item = {'id': 1, 'visitCount': 1},
             ConditionExpression = 'attribute_not_exists(id)'
         )
     except botocore.exceptions.ClientError as e:
@@ -24,11 +21,7 @@ def lambda_handler(event, context):
         ExpressionAttributeValues={':value1': newcounter}
     )
     return {
-	'body': newcounter,
-	'statusCode': 200,
-	'headers': {
-		'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'application/json',
-                'Access-Control-Allow-Methods': 'OPTIONS,GET',
-	}
+	    'body': newcounter,
+	    'statusCode': 200,
+	    'headers': {'Access-Control-Allow-Origin': '*'}
     }
