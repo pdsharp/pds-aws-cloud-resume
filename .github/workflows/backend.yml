@@ -11,12 +11,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - uses: aws-actions/setup-sam@v1
-      - uses: aws-actions/configure-aws-credentials@v1
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+
+      - name: Install PyTest
+        run: pip3 install pytest
+
+      - name: Setup SAM
+        uses: aws-actions/setup-sam@v1
+
+      - name: Configure AWS Creds
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
-      - run: sam build --use-container -t backend/template.yaml
+
+      - name: Build SAM Application
+        run: sam build --use-container -t backend/template.yaml
+
+      - name: Test with PyTest
+        run: python3 -m pytest -s -vvv
+
+      - name: Deploy to AWS
       - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name counter --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-o7kw4beqpta9 --capabilities CAPABILITY_IAM --debug
