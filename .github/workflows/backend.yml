@@ -35,4 +35,4 @@ jobs:
         run: python3 -m pytest -s -vvv
 
       - name: Deploy to AWS
-      - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name counter --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-o7kw4beqpta9 --capabilities CAPABILITY_IAM --debug
+        run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name counter --s3-bucket aws-sam-cli-managed-default-samclisourcebucket-o7kw4beqpta9 --capabilities CAPABILITY_IAM --debug
