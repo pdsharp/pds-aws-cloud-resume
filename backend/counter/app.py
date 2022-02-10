@@ -7,7 +7,7 @@ table = client.Table("counter")
 def lambda_handler(event, context):
     try:
         table.put_item(
-            Item = {'id': 1, 'visitCount': 1},
+            Item = {'id': 1, 'visitCount': 1,},
             ConditionExpression = 'attribute_not_exists(id)'
         )
     except botocore.exceptions.ClientError as e:
