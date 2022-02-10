@@ -15,8 +15,8 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
 
-      - name: Install PyTest
-        run: pip3 install pytest
+      - name: Install Python Dependencies
+        uses: py-actions/py-dependency-install@v3
 
       - name: Setup SAM
         uses: aws-actions/setup-sam@v1
